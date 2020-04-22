@@ -42,4 +42,4 @@ def config(filename, init_file=False, log_level=logging.INFO):
 # ------
 # import logger
 # logger.config('out.log')
-# print(123) # It will be printed out on both stdout and file 'out.log'.
+# print(123) # It will be printed on both stdout and file 'out.log'.
