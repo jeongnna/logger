@@ -9,6 +9,7 @@ class Logger:
             open(filename, 'w').close()
 
         self.logger = logging.getLogger()
+        self.logger.setLevel(log_level)
         self.log_level = log_level
 
         self.logger.addHandler(logging.FileHandler(filename))
