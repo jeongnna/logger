@@ -8,26 +8,29 @@ fw_logger.setLevel(logging.INFO)
 
 class LoggerWriter:
 
-    def __init__(self, logger, log_level=logging.INFO):
+    def __init__(self, logger, level=logging.INFO):
         self.logger = logger
-        self.log_level = log_level
-        self._linebuf = ''
+        self.level = level
+        self._msg_buf = ''
 
-    def write(self, buf):
-        temp_linebuf = self._linebuf + buf
-        self._linebuf = ''
+    def write(self, msg):
+        full_msg = self._msg_buf + msg
+        self._msg_buf = ''
 
-        for line in temp_linebuf.splitlines(keepends=True):
+        for line in full_msg.splitlines(keepends=True):
             if line[-1] == '\n':
-                self.logger.log(self.log_level, line.rstrip())
+                self._log(line.rstrip())
             else:
-                self._linebuf += line
+                self._msg_buf += line
 
     def flush(self):
-        if self._linebuf != '':
-            self.logger.log(self.log_level, self._linebuf.rstrip())
+        if self._msg_buf != '':
+            self._log(self._msg_buf.rstrip())
 
-        self._linebuf = ''
+        self._msg_buf = ''
+
+    def _log(self, msg):
+        self.logger.log(self.level, msg)
 
 
 _loggerwriter = LoggerWriter(fw_logger)
