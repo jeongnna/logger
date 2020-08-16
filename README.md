@@ -1,6 +1,6 @@
 # Stdout Forwarding
 
-python에서 sys.stdout에 출력되는 모든 메세지를 지정된 파일에도 동시에 출력하기 위한 모듈입니다.
+python에서 stdout에 출력되는 메세지를 stdout과 로그파일에 동시에 출력하기 위한 모듈입니다.
 
 ## Usage
 
